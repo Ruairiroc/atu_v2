@@ -10,6 +10,7 @@ function Modules({modules}){
             navigate(`/sections/${encodeURIComponent(module)}`)
     }
 
+    //test
     return (
         <div className="modules_container">
             <div className="module_grid">
