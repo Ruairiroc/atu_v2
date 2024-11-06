@@ -1,31 +1,27 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "@firebase/firestore";
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCLMScfPRccYS1t26bRWK0oK8MMQvufSzY",
-  authDomain: "atu-academic-writing-game.firebaseapp.com",
-  databaseURL: "https://atu-academic-writing-game-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "atu-academic-writing-game",
-  storageBucket: "atu-academic-writing-game.appspot.com",
-  messagingSenderId: "402594066923",
-  appId: "1:402594066923:web:574827aa40b48f8dc429ae",
-  measurementId: "G-6T61MMEK99"
+  apiKey: "AIzaSyDt2Rikcx-a8wk_zSHAnga-LmpN50sSDSs",
+  authDomain: "atuproj-71480.firebaseapp.com",
+  projectId: "atuproj-71480",
+  storageBucket: "atuproj-71480.firebasestorage.app",
+  messagingSenderId: "583015056970",
+  appId: "1:583015056970:web:268c8851245a730b8788b3"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
+export const db = getFirestore(app);
 
-firebase.initializeApp(firebaseConfig);
-
-// Initialize Firestore
-const db = firebase.firestore();
-
-export { db, firebaseConfig }; // If you want to use db in other files
 

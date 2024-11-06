@@ -3,38 +3,15 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { getFirestore, collection, setDoc, addDoc, doc } from "@firebase/firestore";
+import { db } from "./FirebaseConfig";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCLMScfPRccYS1t26bRWK0oK8MMQvufSzY",
-  authDomain: "atu-academic-writing-game.firebaseapp.com",
-  projectId: "atu-academic-writing-game",
-  storageBucket: "atu-academic-writing-game.firebasestorage.app",
-  messagingSenderId: "402594066923",
-  appId: "1:402594066923:web:574827aa40b48f8dc429ae",
-  measurementId: "G-6T61MMEK99"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-
-//firebase.initializeApp(firebaseConfig);
-
-// Initialize Firestore
-const db = getFirestore(app);
 
 
 async function addLearnerCat() {
   try {
     // Adding data to 'Learner_Cat' collection
-    await addDoc(collection(db, "Learner_Cat"), {
+    await setDoc(collection(db, "Learner_Cat"), {
       cid: 1,
       catName: "Business Admin",
       subCourse1: "Admin And Office Skills",
@@ -42,7 +19,7 @@ async function addLearnerCat() {
       subCourse3: "Office Skills"
     });
 
-    await addDoc(collection(db, "Learner_Cat"), {
+    await setDoc(collection(db, "Learner_Cat"), {
       cid: 2,
       catName: "Education",
       subCourse1: "Teaching",
@@ -50,7 +27,7 @@ async function addLearnerCat() {
       subCourse3: "Primary School Education"
     });
 
-    await addDoc(collection(db, "Learner_Cat"), {
+    await setDoc(collection(db, "Learner_Cat"), {
       cid: 3,
       catName: "Hospitality and Tourism",
       subCourse1: "Tourism Skills",
@@ -64,48 +41,24 @@ async function addLearnerCat() {
   }
 }
 
-addLearnerCat();
 
-//learner Cat
-/*db.collection('Learner_Cat').add({
-  cid: 1,
-  catName: "Business Admin",
-  subCourse1: "Admin And Office Skills",
-  subCourse2: "Office Administration",
-  subCourse3: "Office Skills"
-});
 
-db.collection('Learner_Cat').add({
-  cid: 2,
-  catName: "Education",
-  subCourse1: "Teaching",
-  subCourse2: "Education Management",
-  subCourse3: "Primary School Education"
-});
 
-db.collection('Learner_Cat').add({
-  cid: 3,
-  catName: "Hospitality and Tourism",
-  subCourse1: "Tourism Skills",
-  subCourse2: "Hospitality Management",
-  subCourse3: "Tourism Management"
-});
-*/
 
 //topics
 
 // Function to add topics to Firestore
 async function addTopics() {
   try {
-    await addDoc(collection(db, 'Topics'), { tid: 1, topName: "The use of email for office administration", cid: 1 });
-    await addDoc(collection(db, 'Topics'), { tid: 2, topName: "Email etiquette", cid: 1 });
-    await addDoc(collection(db, 'Topics'), { tid: 3, topName: "Email and GDPR", cid: 1 });
-    await addDoc(collection(db, 'Topics'), { tid: 4, topName: "Educational Psychology", cid: 2 });
-    await addDoc(collection(db, 'Topics'), { tid: 5, topName: "Special needs Education", cid: 2 });
-    await addDoc(collection(db, 'Topics'), { tid: 6, topName: "Education Theory", cid: 2 });
-    await addDoc(collection(db, 'Topics'), { tid: 7, topName: "Principles of hospitality Management", cid: 3 });
-    await addDoc(collection(db, 'Topics'), { tid: 8, topName: "Rooms management", cid: 3 });
-    await addDoc(collection(db, 'Topics'), { tid: 9, topName: "Hospitality teamwork", cid: 3 });
+    await setDoc(collection(db, 'Topics'), { tid: 1, topName: "The use of email for office administration", cid: 1 });
+    await setDoc(collection(db, 'Topics'), { tid: 2, topName: "Email etiquette", cid: 1 });
+    await setDoc(collection(db, 'Topics'), { tid: 3, topName: "Email and GDPR", cid: 1 });
+    await setDoc(collection(db, 'Topics'), { tid: 4, topName: "Educational Psychology", cid: 2 });
+    await setDoc(collection(db, 'Topics'), { tid: 5, topName: "Special needs Education", cid: 2 });
+    await setDoc(collection(db, 'Topics'), { tid: 6, topName: "Education Theory", cid: 2 });
+    await setDoc(collection(db, 'Topics'), { tid: 7, topName: "Principles of hospitality Management", cid: 3 });
+    await setDoc(collection(db, 'Topics'), { tid: 8, topName: "Rooms management", cid: 3 });
+    await setDoc(collection(db, 'Topics'), { tid: 9, topName: "Hospitality teamwork", cid: 3 });
 
     console.log("Data successfully added to Topics!");
   } catch (error) {
@@ -114,7 +67,7 @@ async function addTopics() {
 }
 
 // Call addTopics to add the topics
-addTopics();
+
 
 async function addParaThemes() {
   const themes = [
@@ -131,7 +84,7 @@ async function addParaThemes() {
 
   try {
     for (const theme of themes) {
-      await addDoc(collection(db, "ParaTheme"), theme);
+      await setDoc(collection(db, "ParaTheme"), theme);
     }
     console.log("All themes added successfully!");
   } catch (error) {
@@ -140,7 +93,7 @@ async function addParaThemes() {
 }
 
 // Call the function
-addParaThemes()
+
 
 
 // Function to add data to the 'ParaSent' collection
@@ -201,7 +154,7 @@ async function addParaSentData() {
   // Loop through each item and add it to Firestore
   for (const item of data) {
     try {
-      await addDoc(paraSentCollection, item);
+      await setDoc(paraSentCollection, item);
       console.log(`Document added for sid: ${item.sid}`);
     } catch (error) {
       console.error(`Error adding document for sid ${item.sid}: `, error);
@@ -339,7 +292,7 @@ async function addAnswerOptions() {
 
   try {
     for (const option of answerOptions) {
-      await addDoc(collection(db, "AnsOptions"), option);
+      await setDoc(collection(db, "AnsOptions"), option);
     }
     console.log("All answer options added successfully!");
   } catch (error) {
@@ -348,24 +301,14 @@ async function addAnswerOptions() {
 }
 
 // Call the function
-addAnswerOptions();
 
 
 
 
-async function testWrite() {
-  try {
-    await setDoc(doc(db, "TestCollection", "testDoc"), {
-      testField: "testValue"
-    });
-    console.log("Test write successful!");
-  } catch (error) {
-    console.error("Test write error: ", error);
-  }
-}
-
-testWrite();
 
 
 
-export {db, addLearnerCat, addTopics, addParaThemes, addParaSentData, addAnswerOptions, testWrite, app };
+
+
+export {db, addLearnerCat, addTopics, addParaThemes, addParaSentData, addAnswerOptions};
+
